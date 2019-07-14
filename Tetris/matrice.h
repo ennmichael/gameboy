@@ -1,5 +1,4 @@
-#ifndef _MATRICE_H__
-#define _MATRICE_H__
+#pragma once
 
 #include "Sdl-Plus-Plus/drawing.h"
 #include <cstddef>
@@ -99,5 +98,3 @@ void for_each(M& matrice,
     });
 }
 }
-
-#endif

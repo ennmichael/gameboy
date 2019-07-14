@@ -44,7 +44,6 @@ class Tetromino_block_offsets {
 
     const Sdl::Point_vector& get() const noexcept;
     void rotate(Rotation) noexcept;
-    void clear() noexcept;
 
    private:
     const Blocks* blocks_;  // This is a pointer instead of a reference

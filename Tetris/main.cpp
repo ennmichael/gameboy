@@ -5,7 +5,7 @@
 #include <chrono>
 #include <iostream>
 
-int main() {
+int main(int, char**) {
     using namespace Sdl;
     using namespace Game_logic;
     using namespace Visuals;
@@ -22,7 +22,7 @@ int main() {
 
     Game tetris{500ms};
 
-    Event_loop ml{[&tetris](const auto& event) {
+    Event_loop ml{[&tetris](const SDL_Event& event) -> Event_result {
                       if (event.type == SDL_QUIT)
                           return Event_result::Quit;
 
@@ -35,4 +35,6 @@ int main() {
                   }};
 
     ml.start();
+
+    return 0;
 }

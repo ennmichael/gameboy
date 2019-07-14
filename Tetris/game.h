@@ -1,5 +1,4 @@
-#ifndef _GAME_H__
-#define _GAME_H__
+#pragma once
 
 #include "game_logic.h"
 #include "visuals.h"
@@ -110,5 +109,3 @@ class Game {
     bool game_over_{false};
 };
 }
-
-#endif
