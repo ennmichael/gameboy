@@ -33,4 +33,4 @@ void draw(Sdl::Screen& screen, const Game_logic::Snake& snake) {
 void draw(Sdl::Screen& screen, const Game_logic::Food& food) {
     draw_rect_at_point(screen, food.position(), Constants::food_color);
 }
-};
+}

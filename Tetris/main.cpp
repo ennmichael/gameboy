@@ -1,15 +1,9 @@
 #include "game_logic.h"
 #include "game.h"
-#include "sdl-plus-plus/drawing.h"
-#include "sdl-plus-plus/flow.h"
+#include "Sdl-Plus-Plus/drawing.h"
+#include "Sdl-Plus-Plus/flow.h"
 #include <chrono>
 #include <iostream>
-
-/*
- * TODO list
- * 1. Write the initializers for the factory.
- * 2. Write the rotation algorithm.
- */
 
 int main() {
     using namespace Sdl;

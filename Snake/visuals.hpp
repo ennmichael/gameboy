@@ -2,7 +2,7 @@
 #define _VISUALS_HPP_
 
 #include "food.hpp"
-#include "sdl-plus-plus/drawing.h"
+#include "Sdl-Plus-Plus/drawing.h"
 #include "snake.hpp"
 
 namespace Visuals {

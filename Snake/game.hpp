@@ -1,9 +1,8 @@
-#ifndef _GAME_HPP_
-#define _GAME_HPP_
+#pragma once
 
+#include "Sdl-Plus-Plus/flow.h"
 #include "controllers.hpp"
 #include "food.hpp"
-#include "sdl-plus-plus/flow.h"
 #include "snake.hpp"
 #include "visuals.hpp"
 #include "ai_controller.hpp"
@@ -39,4 +38,3 @@ class Game {
 };
 }  // End namespace Game_logic.
 
-#endif

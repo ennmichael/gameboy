@@ -1,8 +1,7 @@
-#ifndef _VISUALS_H__
-#define _VISUALS_H__
+#pragma once
 
 #include "game_logic.h"
-#include "sdl-plus-plus/drawing.h"
+#include "Sdl-Plus-Plus/drawing.h"
 #include <cstddef>
 
 /*
@@ -21,4 +20,3 @@ void draw_game_element(Sdl::Screen&, const Game_logic::Tetromino&);
 void draw_game_element(Sdl::Screen&, const Game_logic::Tetromino_table&);
 }
 
-#endif

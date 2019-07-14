@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sdl-plus-plus/flow.h"
+#include "Sdl-Plus-Plus/flow.h"
 #include <cassert>
 #include <unordered_map>
 #include <optional>

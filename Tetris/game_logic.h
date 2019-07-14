@@ -5,8 +5,8 @@
  */
 
 #include "matrice.h"
-#include "sdl-plus-plus/drawing.h"
-#include "sdl-plus-plus/flow.h"
+#include "Sdl-Plus-Plus/drawing.h"
+#include "Sdl-Plus-Plus/flow.h"
 #include <optional>
 #include <vector>
 #include <random>

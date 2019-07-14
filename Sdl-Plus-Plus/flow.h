@@ -35,7 +35,7 @@ public:
                             // if the visitor tries to take a non-const reference
         advance_just_pressed();
         advance_just_released();
-        return boost::apply_visitor(v, temp); 
+        return std::visit(v, temp); 
     }
     
 private:

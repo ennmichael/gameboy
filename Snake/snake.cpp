@@ -66,4 +66,5 @@ void wrap_coord(int& v) noexcept {
     else if (v < 0)
         v += Constants::game_size;
 }
-};
+}
+

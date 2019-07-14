@@ -2,7 +2,7 @@
 #define _FOOD_HPP_
 
 #include "constants.hpp"
-#include "sdl-plus-plus/drawing.h"
+#include "Sdl-Plus-Plus/drawing.h"
 #include "snake.hpp"
 #include <random>
 
