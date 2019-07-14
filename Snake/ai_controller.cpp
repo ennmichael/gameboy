@@ -88,8 +88,6 @@ Rule_value AI_controller::evaluate_case(Direction dir, const Snake& self) {
     modified_snake.set_direction(dir);
     modified_snake.frame_advance();
 
-    auto head = head_pos(modified_snake);
-
     const Rule_data rd{modified_snake, food_};
 
     for (auto i = rules_.cbegin(); i != split_; ++i) {

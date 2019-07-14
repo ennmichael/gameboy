@@ -16,7 +16,7 @@ bool any_of_points(const Tetromino& tetromino, Predicate_f f) {
 
 bool all_of_points(const Tetromino& tetromino, Predicate_f f) {
     auto positions = block_positions(tetromino);
-    return std::any_of(positions.cbegin(), positions.cend(), f);
+    return std::all_of(positions.cbegin(), positions.cend(), f);
 }
 }
 

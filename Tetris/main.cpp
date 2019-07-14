@@ -22,7 +22,7 @@ int main() {
 
     Game tetris{500ms};
 
-    Event_loop ml{[&screen, &tetris](const auto& event) {
+    Event_loop ml{[&tetris](const auto& event) {
                       if (event.type == SDL_QUIT)
                           return Event_result::Quit;
 
