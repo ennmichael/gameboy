@@ -25,7 +25,7 @@ else()
 message(FATAL_ERROR "SDL2 not found. If you're on Linux, try running sudo apt-get install libsdl2-dev. On Windows, download the development libraries from http://www.libsdl.org/download-2.0.php")
 endif()
 
-add_executable(Snake Snake/direction.cpp Snake/food.cpp Snake/game.cpp Snake/main.cpp Snake/player_controller.cpp Snake/snake.cpp Snake/visuals.cpp Snake/ai_controller.cpp)
+add_executable(Snake Snake/direction.cpp Snake/food.cpp Snake/game.cpp Snake/main.cpp Snake/player_controller.cpp Snake/snake.cpp Snake/visuals.cpp Snake/ai_controller.cpp Snake/key_catcher.cpp)
 target_include_directories(Snake PRIVATE ${gameboy_SOURCE_DIR})
 target_link_libraries(Snake sdl_plus_plus)
 add_warnings(Snake)
