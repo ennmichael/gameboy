@@ -1,5 +1,4 @@
-#ifndef SDLPP__FLOW__HEADER_
-#define SDLPP__FLOW__HEADER_
+#pragma once
 
 #include "drawing.h"
 #include <functional>
@@ -24,17 +23,14 @@ public:
     struct Just_pressed {};
     struct Just_released {};
     
-    using State = std::variant<Up, 
-                               Down, 
-                               Just_pressed, 
-                               Just_released>;
+    using State = std::variant<Up, Down, Just_pressed, Just_released>;
     
     void update(const SDL_Event&);
     Sdl::Point position() const noexcept;
     
     template <class Visitor>
     typename Visitor::result_type visit_state(Visitor v) {
-        const auto temp = state_; 
+        const auto temp = m_state; 
                             // Forbid mutation, results in a compiler error
                             // if the visitor tries to take a non-const reference
         advance_just_pressed();
@@ -50,8 +46,8 @@ private:
     
     template <class Select, class New>
     void replace_in_state() {
-        if (boost::get<Select>(&state_)) {
-            state_ = New{};
+        if (std::holds_alternative<Select>(m_state)) {
+            m_state = New{};
         }
     }
     
@@ -61,13 +57,13 @@ private:
         Integral sdl_macro_value) {
         if (event.type == sdl_macro_value &&
             event.button.button == SDL_BUTTON_LEFT &&
-            !boost::get<Avoid>(&state_)) {
-            state_ = New{};
+            !std::holds_alternative<Avoid>(m_state)) {
+            m_state = New{};
         }
     }
     
-    State state_{Up{}};
-    Sdl::Point pos_{};
+    State m_state{Up{}};
+    Sdl::Point m_pos{};
 };
 
 class Basic_loop {
@@ -136,5 +132,3 @@ class Timer {
     Uint32 current_{SDL_GetTicks()};
 };
 }
-
-#endif

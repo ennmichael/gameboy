@@ -53,47 +53,9 @@ Line::Line(Point new_from, Angle_rad rads, int length) noexcept
 Line::Line(Point new_from, Point new_to) noexcept : from{new_from},
                                                     to{new_to} {}
 
-void Texture_factory::add(const std::string& name, Unique_renderer& renderer) {
-    Drawable_texture drawable = {load_texture(name.c_str(), renderer)};
-
-    check_function(SDL_QueryTexture(drawable.texture.get(), nullptr, nullptr,
-                                    &drawable.width, &drawable.height));
-
-    m_map[name] = std::move(drawable);
-}
-
-bool Texture_factory::exists(const std::string& name) const noexcept {
-    return m_map.count(name) != 0;
-}
-
-Drawable_texture Texture_factory::get(const std::string& name) const noexcept {
-    return m_map.at(name);
-}
-
 Screen::Screen(const Screen_properties& properties) : m_canvas{properties} {
     check_function(SDL_SetRenderDrawBlendMode(m_canvas.renderer.get(),
                                               SDL_BLENDMODE_BLEND));
-}
-
-void Screen::add_draw(const std::string& name, Point where) {
-    if (!m_factory.exists(name))
-        m_factory.add(name, m_canvas.renderer);
-
-    m_snapshots.push_back([this, name, where] {
-        auto drawable = m_factory.get(name);
-
-        SDL_Rect src{};
-        SDL_Rect dst{};
-
-        src.w = dst.w = drawable.width;
-        src.h = dst.h = drawable.height;
-
-        dst.x = where.x;
-        dst.y = where.y;
-
-        check_function(SDL_RenderCopy(m_canvas.renderer.get(),
-                                      drawable.texture.get(), &src, &dst));
-    });
 }
 
 void Screen::add_draw(Line line, SDL_Color color) {

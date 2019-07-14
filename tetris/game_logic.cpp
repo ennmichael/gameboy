@@ -9,25 +9,14 @@ using Point_vector_iterator = Sdl::Point_vector::const_iterator;
 
 using Predicate_f = std::function<bool(Sdl::Point)>;
 
-using Outer_f = std::function<
-    bool(Point_vector_iterator, Point_vector_iterator, Predicate_f)>;
-
-bool apply_to_points(Outer_f outer,
-                     const Tetromino& tetromino,
-                     Predicate_f inner) {
-    auto positions = block_positions(tetromino);
-
-    return outer(positions.cbegin(), positions.cend(), inner);
-}
-
 bool any_of_points(const Tetromino& tetromino, Predicate_f f) {
-    return apply_to_points(std::any_of<Point_vector_iterator, Predicate_f>,
-                           tetromino, f);
+    auto positions = block_positions(tetromino);
+    return std::any_of(positions.cbegin(), positions.cend(), f);
 }
 
 bool all_of_points(const Tetromino& tetromino, Predicate_f f) {
-    return apply_to_points(std::all_of<Point_vector_iterator, Predicate_f>,
-                           tetromino, f);
+    auto positions = block_positions(tetromino);
+    return std::any_of(positions.cbegin(), positions.cend(), f);
 }
 }
 
@@ -114,7 +103,7 @@ auto Tetromino_table::blocks() const noexcept -> const Matrice& {
 
 void Tetromino_table::clear_row(Row& row) noexcept {
     for (auto& block : row) {
-        block = boost::none;
+        block = std::nullopt;
     }
 }
 

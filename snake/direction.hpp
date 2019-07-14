@@ -1,12 +1,9 @@
-#ifndef _DIRECTION_HPP_
-#define _DIRECTION_HPP_
+#pragma once
 
-#include "sdl-plus-plus/drawing.h"
+#include "Sdl-Plus-Plus/drawing.h"
 
 namespace Game_logic {
 enum class Direction { up, down, left, right };
 
 Sdl::Point direction_vector(Direction) noexcept;
 }
-
-#endif

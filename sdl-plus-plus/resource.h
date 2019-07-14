@@ -1,5 +1,4 @@
-#ifndef SDLPP__RESOURCE__HEADER_
-#define SDLPP__RESOURCE__HEADER_
+#pragma once
 
 #include "SDL2/SDL.h"
 #include <stdexcept>
@@ -26,14 +25,10 @@ class Sdl_system_control {
 struct Window_deleter;
 struct Renderer_deleter;
 struct Surface_deleter;
-struct Texture_deleter;
 
 using Unique_window = std::unique_ptr<SDL_Window, Window_deleter>;
 using Unique_renderer = std::unique_ptr<SDL_Renderer, Renderer_deleter>;
 using Unique_surface = std::unique_ptr<SDL_Surface, Surface_deleter>;
-using Shared_texture = std::shared_ptr<SDL_Texture>;
-
-Shared_texture load_texture(const std::string&, Unique_renderer&);
 
 // Exception checking
 template <class T>
@@ -52,15 +47,9 @@ struct Surface_deleter {
     void operator()(SDL_Surface*) const noexcept;
 };
 
-struct Texture_deleter {
-    void operator()(SDL_Texture*) const noexcept;
-};
-
 template <class T>
 void check_pointer(const T& t_ptr) {
     if (t_ptr == nullptr)
         throw Sdl_exception{};
 }
 }
-
-#endif

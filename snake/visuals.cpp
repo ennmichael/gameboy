@@ -8,7 +8,6 @@ namespace {
 void draw_rect_at_point(Sdl::Screen& screen,
                         Sdl::Point point,
                         SDL_Color color) {
-    // TODO change this algorithm a bit
     screen.add_draw(
         Sdl::make_rect(
             point * Sdl::Point{Constants::rect_size, Constants::rect_size},

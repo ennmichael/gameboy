@@ -1,5 +1,4 @@
-#ifndef _GAME_LOGIC_H__
-#define _GAME_LOGIC_H__
+#pragma once
 
 /*
  * Code for the actual game elements.
@@ -8,7 +7,7 @@
 #include "matrice.h"
 #include "sdl-plus-plus/drawing.h"
 #include "sdl-plus-plus/flow.h"
-#include "boost/optional/optional.hpp"
+#include <optional>
 #include <vector>
 #include <random>
 #include <chrono>
@@ -82,7 +81,7 @@ struct Tetromino {
  */
 Sdl::Point_vector block_positions(const Tetromino&);
 
-using Optional_color = boost::optional<SDL_Color>;
+using Optional_color = std::optional<SDL_Color>;
 
 constexpr std::size_t table_width = 8;
 constexpr std::size_t table_height = 16;
@@ -204,5 +203,3 @@ class Tetromino_factory {
     mutable std::random_device rd_{};
 };
 }  // End Game_logic
-
-#endif

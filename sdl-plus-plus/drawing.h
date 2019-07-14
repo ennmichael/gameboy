@@ -1,5 +1,4 @@
-#ifndef SDLPP__DRAWING__HEADRER_
-#define SDLPP__DRAWING__HEADRER_
+#pragma once
 
 #include "SDL2/SDL.h"
 #include "resource.h"
@@ -103,29 +102,12 @@ struct Line {
     Point to{};
 };
 
-struct Drawable_texture {
-    Shared_texture texture{nullptr};
-    int width{};
-    int height{};
-};
-
-class Texture_factory {
-   public:
-    void add(const std::string&, Unique_renderer&);
-    bool exists(const std::string&) const noexcept;
-    Drawable_texture get(const std::string&) const noexcept;
-
-   private:
-    std::map<std::string, Drawable_texture> m_map{};
-};
-
 enum class Color_filling : bool { Filled, None };
 
 class Screen {  // Manipulates a canvas
    public:
     explicit Screen(const Screen_properties&);
 
-    void add_draw(const std::string&, Point);
     void add_draw(Line, SDL_Color);
     void add_draw(SDL_Rect, SDL_Color, Color_filling);
 
@@ -137,8 +119,6 @@ class Screen {  // Manipulates a canvas
     void set_renderer_color(SDL_Color);
 
     Canvas m_canvas{};
-    Texture_factory m_factory{};
-    // Stuff to draw
     std::vector<Snapshot> m_snapshots{};
 };
 
@@ -278,5 +258,3 @@ namespace std {
         std::hash<int> int_hash_{};
     };
 }
-
-#endif

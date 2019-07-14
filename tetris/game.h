@@ -53,7 +53,7 @@ class Button_dispatcher {
 
    private:
     using Dispatch_function =
-        std::function<void(Button_dispatcher_data) noexcept>;
+        std::function<void(Button_dispatcher_data)>;
     using Dispatch_map = std::map<SDL_Scancode, Dispatch_function>;
 
     void do_dispatch(Dispatch_map&,

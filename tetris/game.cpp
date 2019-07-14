@@ -25,41 +25,47 @@ void Game_timer::speed_up() noexcept {
 
 Button_dispatcher::Button_dispatcher()
     : keydown_dispatch_{
-          {SDL_SCANCODE_LEFT, [](auto dispatcher_data) noexcept {
-                                  safe_move(dispatcher_data.tetromino_,
-                                            dispatcher_data.tbl_,
-                                            {-1, 0});
-}
-}
-, {SDL_SCANCODE_RIGHT,
-   [](auto dispatcher_data) noexcept {
-       safe_move(dispatcher_data.tetromino_, dispatcher_data.tbl_, {1, 0});
-}
-}
-, {SDL_SCANCODE_X,
-   [](auto dispatcher_data) noexcept {safe_rotate(dispatcher_data.tetromino_,
-                                                  dispatcher_data.tbl_,
-                                                  Rotation::Clockwise);
-}
-}
-, {SDL_SCANCODE_Y,
-   [](auto dispatcher_data) noexcept {safe_rotate(dispatcher_data.tetromino_,
-                                                  dispatcher_data.tbl_,
-                                                  Rotation::Counter_clockwise);
-}
-}
-, {
-    SDL_SCANCODE_DOWN, [](auto dispatcher_data) noexcept {
-        dispatcher_data.game_timer_.set_mode(Drop_mode::Fast);
+        {
+            SDL_SCANCODE_LEFT,
+            [](auto dispatcher_data) noexcept -> void {
+                safe_move(dispatcher_data.tetromino_,
+                dispatcher_data.tbl_,
+                {-1, 0});
+            }
+        },
+        {
+            SDL_SCANCODE_RIGHT,
+            [](auto dispatcher_data) noexcept {
+                safe_move(dispatcher_data.tetromino_, dispatcher_data.tbl_, {1, 0});
+            }
+        },
+        {
+            SDL_SCANCODE_X,
+            [](auto dispatcher_data) noexcept {
+                safe_rotate(dispatcher_data.tetromino_, dispatcher_data.tbl_, Rotation::Clockwise);
+            }
+        },
+        {
+            SDL_SCANCODE_Y,
+            [](auto dispatcher_data) noexcept {
+                safe_rotate(dispatcher_data.tetromino_, dispatcher_data.tbl_, Rotation::Counter_clockwise);
+            }
+        },
+        {
+            SDL_SCANCODE_DOWN,
+            [](auto dispatcher_data) noexcept {
+                dispatcher_data.game_timer_.set_mode(Drop_mode::Fast);
+            }
+        }
     }
-}
-}
-, keyup_dispatch_{{SDL_SCANCODE_DOWN,
-                   [](auto dispatcher_data) noexcept {
-                       dispatcher_data.game_timer_.set_mode(Drop_mode::Normal);
-}
-}
-}
+    , keyup_dispatch_{
+        {
+            SDL_SCANCODE_DOWN,
+            [](auto dispatcher_data) noexcept {
+                dispatcher_data.game_timer_.set_mode(Drop_mode::Normal);
+            }
+        }
+    }
 {
     // Making sure that the same button does the same thing
     // on both English and German keyboards.

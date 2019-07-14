@@ -1,7 +1,6 @@
-#ifndef _CONSTANTS_HPP_
-#define _CONSTANTS_HPP_
+#pragma once
 
-#include "sdl-plus-plus/drawing.h"
+#include "Sdl-Plus-Plus/drawing.h"
 
 namespace Constants {
 constexpr auto game_size = 14;
@@ -12,5 +11,3 @@ constexpr auto snake_color = Sdl::color_black();
 constexpr auto food_color = Sdl::color_red();
 constexpr auto background_color = Sdl::color_white();
 };
-
-#endif

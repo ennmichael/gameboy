@@ -100,8 +100,6 @@ Rule_value AI_controller::evaluate_case(Direction dir, const Snake& self) {
     }
 
     for (auto i = split_; i != rules_.cend(); ++i) {
-        std::cout << "Loops\n";
-
         if ((*i)->okay(rd)) {
             ++rv.optional_score_;
         }

@@ -1,11 +1,11 @@
 #ifndef _MATRICE_H__
 #define _MATRICE_H__
 
-#include "sdl-plus-plus/drawing.h"
+#include "Sdl-Plus-Plus/drawing.h"
 #include <cstddef>
 #include <array>
 #include <functional>
-#include <utility
+#include <utility>
 
 /*
  * General utilities for dealing with matrices

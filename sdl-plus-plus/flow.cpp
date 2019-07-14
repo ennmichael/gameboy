@@ -12,7 +12,7 @@ void Mouse::update(const SDL_Event& event) {
 }
 
 Sdl::Point Mouse::position() const noexcept {
-    return pos_;
+    return m_pos;
 }
 
 void Mouse::advance_just_pressed() noexcept {
@@ -27,7 +27,7 @@ void Mouse::update_position(const SDL_Event& event) noexcept {
     if (event.type != SDL_MOUSEMOTION) {
         return;
     }
-    pos_ = {event.motion.x, event.motion.y};
+    m_pos = {event.motion.x, event.motion.y};
 }
 
 void Mouse::update_state(const SDL_Event& event) noexcept {

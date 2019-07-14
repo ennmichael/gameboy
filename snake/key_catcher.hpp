@@ -1,10 +1,9 @@
-#ifndef _KEY_CATCHER_HPP_
-#define _KEY_CATCHER_HPP_
+#pragma once
 
-#include "boost/optional/optional.hpp"
 #include "sdl-plus-plus/flow.h"
 #include <cassert>
 #include <unordered_map>
+#include <optional>
 
 namespace Technical {
 /*
@@ -27,7 +26,7 @@ class Key_catcher {
     void set(SDL_Scancode) noexcept;
 
     std::unordered_map<SDL_Scancode, bool> keys_{{scancodes, false}...};
-    boost::optional<SDL_Scancode> last_{boost::none};
+    std::optional<SDL_Scancode> last_{std::nullopt};
 };
 
 template <SDL_Scancode... scancodes>
@@ -72,5 +71,3 @@ using Arrow_key_catcher = Technical::Key_catcher<SDL_SCANCODE_UP,
                                                  SDL_SCANCODE_LEFT,
                                                  SDL_SCANCODE_RIGHT>;
 }
-
-#endif

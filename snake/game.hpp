@@ -9,7 +9,6 @@
 #include "ai_controller.hpp"
 
 namespace Game_logic {
-// This class is likely to change a lot
 bool eats(const Snake&, const Food&) noexcept;
 
 class Game {

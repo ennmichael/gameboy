@@ -19,7 +19,7 @@ int main() {
 
     Game game{100ms};
 
-    Event_loop loop{[&screen, &game](const auto& event) {
+    Event_loop loop{[&screen, &game](const auto& event) -> Sdl::Event_result {
                         if (event.type == SDL_QUIT)
                             return Event_result::Quit;
 
