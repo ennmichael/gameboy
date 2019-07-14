@@ -26,7 +26,7 @@ void Snake::grow() {
 }
 
 void Snake::frame_advance() noexcept {
-    controller_->think(*this);
+    controller_->control(*this);
     move(body_);
     wrap_position();
 }

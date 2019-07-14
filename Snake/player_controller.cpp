@@ -2,33 +2,26 @@
 #include "food.hpp"
 #include "snake.hpp"
 
-using namespace Technical;
-
 namespace Game_logic {
-Player_controller::Player_controller(const Arrow_key_catcher& keys) noexcept
+Player_controller::Player_controller(const Key_catcher& keys) noexcept
     : Controller{},
-      keys_{keys} {}
+      keys_{&keys} {}
 
-void Player_controller::think(Snake& snake) {
-    if (keys_.is_down(SDL_SCANCODE_UP)) {
+void Player_controller::control(Snake& snake) {
+    if (keys_->is_down(SDL_SCANCODE_UP)) {
         snake.set_direction(Direction::up);
     }
 
-    if (keys_.is_down(SDL_SCANCODE_DOWN)) {
+    if (keys_->is_down(SDL_SCANCODE_DOWN)) {
         snake.set_direction(Direction::down);
     }
 
-    if (keys_.is_down(SDL_SCANCODE_LEFT)) {
+    if (keys_->is_down(SDL_SCANCODE_LEFT)) {
         snake.set_direction(Direction::left);
     }
 
-    if (keys_.is_down(SDL_SCANCODE_RIGHT)) {
+    if (keys_->is_down(SDL_SCANCODE_RIGHT)) {
         snake.set_direction(Direction::right);
     }
 }
-
-// Controller_uptr Player_controller::clone() const
-// {
-//     return std::make_unique<Player_controller>(keys_);
-// }
 }

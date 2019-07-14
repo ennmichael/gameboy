@@ -56,7 +56,7 @@ AI_controller::AI_controller(const Food& food, Rule_vector&& rules) noexcept
     find_split();
 }
 
-void AI_controller::think(Snake& self) {
+void AI_controller::control(Snake& self) {
     constexpr std::array<Direction, 4> directions{
         {Direction::up, Direction::down, Direction::left, Direction::right}};
 

@@ -6,33 +6,30 @@
 #include <iostream>
 
 int main(int, char**) {
-    using namespace Sdl;
-    using namespace Game_logic;
-    using namespace Visuals;
-    using namespace std::literals::chrono_literals;
+    using namespace std::chrono_literals;
 
-    Sdl_system_control _{};
+    Sdl::Sdl_system_control _{};
 
-    Screen_properties props{};
-    props.width = window_width;
-    props.height = window_height;
+    Sdl::Screen_properties props{};
+    props.width = Visuals::window_width;
+    props.height = Visuals::window_height;
     props.title = "HELP";
 
-    Screen screen{props};
+    Sdl::Screen screen{props};
 
-    Game tetris{500ms};
+    Game_logic::Game tetris{500ms};
 
-    Event_loop ml{[&tetris](const SDL_Event& event) -> Event_result {
-                      if (event.type == SDL_QUIT)
-                          return Event_result::Quit;
+    Sdl::Event_loop ml{[&tetris](const auto& event) -> Sdl::Event_result {
+                           if (event.type == SDL_QUIT)
+                               return Sdl::Event_result::Quit;
 
-                      tetris.frame_advance(event);
-                      return Event_result::Continue;
-                  },
-                  [&screen, &tetris] {
-                      tetris.frame_advance(screen);
-                      screen.redraw(color_white());
-                  }};
+                           tetris.frame_advance(event);
+                           return Sdl::Event_result::Continue;
+                       },
+                       [&screen, &tetris] {
+                           tetris.frame_advance(screen);
+                           screen.redraw(Sdl::color_white());
+                       }};
 
     ml.start();
 

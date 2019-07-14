@@ -12,7 +12,7 @@ using Controller_uptr = std::unique_ptr<Controller>;
 /*
  * Controller:
  * used for implementing the behaviour of a snake.
- * Member function think is called each frame, right
+ * Member function control is called each frame, right
  * before the snake advances a frame.
  */
 class Controller {
@@ -26,12 +26,12 @@ class Controller {
 
     virtual ~Controller() = default;
 
-    virtual void think(Snake& self) = 0;
+    virtual void control(Snake& self) = 0;
 };
 
 class Dummy_controller : public Controller {
    public:
-    void think(Snake&) override {}
+    void control(Snake&) override {}
 };
 }
 

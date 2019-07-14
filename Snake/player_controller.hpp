@@ -7,16 +7,15 @@
 namespace Game_logic {
 // Player_controller:
 // a controller for the player snake.
-// think() behaves in regard to key presses.
+// control() behaves in regard to key presses.
 class Player_controller : public Controller {
    public:
-    explicit Player_controller(const Technical::Arrow_key_catcher&) noexcept;
+    explicit Player_controller(const Key_catcher&) noexcept;
 
-    void think(Snake& self) override;
-    //     Controller_uptr clone() const override;
+    void control(Snake& self) override;
 
    private:
-    const Technical::Arrow_key_catcher& keys_;
+    const Key_catcher* keys_;
 };
 }
 

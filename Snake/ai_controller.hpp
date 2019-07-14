@@ -78,7 +78,7 @@ class AI_controller : public Controller {
    public:
     AI_controller(const Food& rd, Rule_vector&&) noexcept;
 
-    void think(Snake& self) override;
+    void control(Snake& self) override;
     //     Controller_uptr clone() const override;
 
    private:

@@ -10,9 +10,11 @@
 namespace Game_logic {
 bool eats(const Snake&, const Food&) noexcept;
 
+
 class Game {
    public:
-    explicit Game(std::chrono::milliseconds) noexcept;
+    enum class Controlled_by {Player, AI};
+    Game(Controlled_by, std::chrono::milliseconds);
 
     void frame_advance(Sdl::Screen&);
     void handle_event(const SDL_Event&) noexcept;
@@ -22,17 +24,9 @@ class Game {
     void check_dead() noexcept;
     void redraw(Sdl::Screen&);
 
-    Technical::Arrow_key_catcher keys_{};
+    Key_catcher keys_{};
     Food food_{};
-    Snake player_ = [this] {
-        Rule_vector rv{};
-
-        rv.push_back(std::make_unique<Self_impact_rule>());
-        rv.push_back(std::make_unique<Food_distance_rule>());
-
-        return Snake{std::unique_ptr<Controller>{
-            std::make_unique<AI_controller>(food_, std::move(rv))}};
-    }();
+    Snake snake_{nullptr};
     Sdl::Timer timer_;
     bool died_{false};
 };

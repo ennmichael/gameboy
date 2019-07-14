@@ -5,8 +5,15 @@ bool eats(const Snake& snake, const Food& food) noexcept {
     return head_pos(snake) == food.position();
 }
 
-Game::Game(std::chrono::milliseconds ms) noexcept : timer_{ms} {
-    food_.reposition(player_);
+Game::Game(Controlled_by controlled_by, std::chrono::milliseconds ms) : timer_{ms} {
+    if (controlled_by == Controlled_by::Player) {
+        snake_ = Snake{std::make_unique<Player_controller>(keys_)};
+    } else if (controlled_by == Controlled_by::AI) {
+        Rule_vector rules{};
+        rules.push_back(std::make_unique<Self_impact_rule>());
+        rules.push_back(std::make_unique<Food_distance_rule>());
+        snake_ = Snake{std::make_unique<AI_controller>(food_, std::move(rules))};
+    }
 }
 
 void Game::frame_advance(Sdl::Screen& screen) {
@@ -21,7 +28,7 @@ void Game::frame_advance(Sdl::Screen& screen) {
     if (!timer_.ready())
         return;
 
-    player_.frame_advance();
+    snake_.frame_advance();
     check_interaction();
     redraw(screen);
 
@@ -36,28 +43,28 @@ void Game::handle_event(const SDL_Event& event) noexcept {
 }
 
 void Game::check_interaction() {
-    if (!eats(player_, food_))
+    if (!eats(snake_, food_))
         return;
 
-    player_.grow();
-    food_.reposition(player_);
+    snake_.grow();
+    food_.reposition(snake_);
 }
 
 void Game::check_dead() noexcept {
-    if (!dead(player_))
+    if (!dead(snake_))
         return;
 
     died_ = true;
 
     Sdl::Message_content content{};
     content.title = "Game over!";
-    content.text = "Final score: " + std::to_string(length(player_));
+    content.text = "Final score: " + std::to_string(length(snake_));
 
     Sdl::show_message(content, Sdl::Message_box_type::Basic);
 }
 
 void Game::redraw(Sdl::Screen& screen) {
-    Visuals::draw(screen, player_);
+    Visuals::draw(screen, snake_);
     Visuals::draw(screen, food_);
     screen.redraw(Constants::background_color);
 }
