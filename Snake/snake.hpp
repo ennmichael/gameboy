@@ -1,5 +1,4 @@
-#ifndef _SNAKE_HPP_
-#define _SNAKE_HPP_
+#pragma once
 
 #include "controller.hpp"
 #include "direction.hpp"
@@ -9,8 +8,8 @@ namespace Game_logic {
 using Snake_points = std::deque<Sdl::Point>;
 
 struct Snake_body {
-    Snake_points points_{};
-    Direction dir_{};
+    Snake_points points{};
+    Direction dir{};
 };
 
 void move(Snake_body&);
@@ -39,5 +38,3 @@ bool dead(const Snake&) noexcept;
 std::size_t length(const Snake&) noexcept;
 void wrap_coord(int&) noexcept;
 }  // End namespace Game_logic
-
-#endif

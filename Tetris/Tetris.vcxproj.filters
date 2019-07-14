@@ -35,10 +35,10 @@
     <ClInclude Include="game_logic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="matrice.h">
+    <ClInclude Include="visuals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="visuals.h">
+    <ClInclude Include="matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

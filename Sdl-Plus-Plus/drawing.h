@@ -118,8 +118,8 @@ class Screen {  // Manipulates a canvas
 
     void set_renderer_color(SDL_Color);
 
-    Canvas m_canvas{};
-    std::vector<Snapshot> m_snapshots{};
+    Canvas canvas_{};
+    std::vector<Snapshot> snapshots_{};
 };
 
 // Basic_point operator definitions

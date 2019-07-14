@@ -4,7 +4,7 @@
  * Code for the actual game elements.
  */
 
-#include "matrice.h"
+#include "matrix.h"
 #include "Sdl-Plus-Plus/drawing.h"
 #include "Sdl-Plus-Plus/flow.h"
 #include <optional>
@@ -92,8 +92,8 @@ constexpr std::size_t tetromino_count = 7;
  */
 class Tetromino_table {
    public:
-    using Matrice = Util::Matrice<Optional_color, table_width, table_height>;
-    using Row = Matrice::value_type;
+    using Matrix = Util::Matrix<Optional_color, table_width, table_height>;
+    using Row = Matrix::value_type;
 
     void insert(const Tetromino&) noexcept;
     /*
@@ -102,7 +102,7 @@ class Tetromino_table {
      * number of rows cleared.
      */
     int clear_rows() noexcept;
-    const Matrice& blocks() const noexcept;
+    const Matrix& blocks() const noexcept;
 
    private:
     void clear_row(Row&) noexcept;
@@ -115,7 +115,7 @@ class Tetromino_table {
     void shift_row(std::size_t) noexcept;
     int clear_and_count_rows() noexcept;
 
-    Matrice blocks_{};
+    Matrix blocks_{};
 };
 
 /*

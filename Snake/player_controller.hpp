@@ -1,5 +1,4 @@
-#ifndef _PLAYER_CONTROLLER_HPP_
-#define _PLAYER_CONTROLLER_HPP_
+#pragma once
 
 #include "controller.hpp"
 #include "key_catcher.hpp"
@@ -18,5 +17,3 @@ class Player_controller : public Controller {
     const Key_catcher* keys_;
 };
 }
-
-#endif

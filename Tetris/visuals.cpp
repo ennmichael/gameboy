@@ -1,5 +1,5 @@
 #include "visuals.h"
-#include "matrice.h"
+#include "matrix.h"
 #include <iostream>
 
 namespace Visuals {

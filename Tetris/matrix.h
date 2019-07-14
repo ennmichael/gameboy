@@ -12,7 +12,7 @@
 
 namespace Util {
 template <class T, std::size_t W, std::size_t H>
-using Matrice = std::array<std::array<T, W>, H>;
+using Matrix = std::array<std::array<T, W>, H>;
 
 /*
  * Value_type:

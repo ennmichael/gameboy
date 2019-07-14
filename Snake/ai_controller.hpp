@@ -1,5 +1,4 @@
-#ifndef _AI_CONTROLLER_HPP
-#define _AI_CONTROLLER_HPP
+#pragma once
 
 #include "ai_controller.hpp"
 #include "food.hpp"
@@ -97,5 +96,3 @@ class AI_controller : public Controller {
     // optional rules start.
 };
 }
-
-#endif

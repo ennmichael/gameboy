@@ -1,7 +1,4 @@
-#ifndef _CONTROLLERS_HPP_
-#define _CONTROLLERS_HPP_
+#pragma once
 
 #include "ai_controller.hpp"
 #include "player_controller.hpp"
-
-#endif

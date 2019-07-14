@@ -168,7 +168,7 @@
   <ItemGroup>
     <ClInclude Include="game.h" />
     <ClInclude Include="game_logic.h" />
-    <ClInclude Include="matrice.h" />
+    <ClInclude Include="matrix.h" />
     <ClInclude Include="visuals.h" />
   </ItemGroup>
   <ItemGroup>

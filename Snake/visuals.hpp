@@ -1,5 +1,4 @@
-#ifndef _VISUALS_HPP_
-#define _VISUALS_HPP_
+#pragma once
 
 #include "food.hpp"
 #include "Sdl-Plus-Plus/drawing.h"
@@ -15,5 +14,3 @@ Sdl::Screen get_screen();
 void draw(Sdl::Screen&, const Game_logic::Snake&);
 void draw(Sdl::Screen&, const Game_logic::Food&);
 }  // End namespace Visuals
-
-#endif

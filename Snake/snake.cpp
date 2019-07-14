@@ -5,9 +5,9 @@
 
 namespace Game_logic {
 void move(Snake_body& body) {
-    body.points_.pop_front();
-    auto new_point = body.points_.back() + direction_vector(body.dir_);
-    body.points_.push_back(new_point);
+    body.points.pop_front();
+    auto new_point = body.points.back() + direction_vector(body.dir);
+    body.points.push_back(new_point);
 }
 
 Snake::Snake(Controller_uptr&& controller) noexcept
@@ -18,11 +18,11 @@ Snake::Snake(const Snake& rhs, Controller_uptr&& controller) noexcept
       body_{rhs.body_} {}
 
 const Snake_points& Snake::points() const noexcept {
-    return body_.points_;
+    return body_.points;
 }
 
 void Snake::grow() {
-    body_.points_.push_front(body_.points_.front());
+    body_.points.push_front(body_.points.front());
 }
 
 void Snake::frame_advance() noexcept {
@@ -33,7 +33,7 @@ void Snake::frame_advance() noexcept {
 
 void Snake::set_direction(Direction new_dir) noexcept {
     if (!opposite_direction(new_dir)) {
-        body_.dir_ = new_dir;
+        body_.dir = new_dir;
     }
 }
 
@@ -43,12 +43,12 @@ Sdl::Point head_pos(const Snake& snake) noexcept {
 
 bool Snake::opposite_direction(Direction other_dir) const noexcept {
     return direction_vector(other_dir) ==
-           direction_vector(body_.dir_) * Sdl::Point{-1, -1};
+           direction_vector(body_.dir) * Sdl::Point{-1, -1};
 }
 
 void Snake::wrap_position() noexcept {
-    wrap_coord(body_.points_.back().x);
-    wrap_coord(body_.points_.back().y);
+    wrap_coord(body_.points.back().x);
+    wrap_coord(body_.points.back().y);
 }
 
 bool dead(const Snake& snake) noexcept {

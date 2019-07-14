@@ -1,5 +1,4 @@
-#ifndef _FOOD_HPP_
-#define _FOOD_HPP_
+#pragma once
 
 #include "constants.hpp"
 #include "Sdl-Plus-Plus/drawing.h"
@@ -20,5 +19,3 @@ class Food {
     std::random_device dev_{};
 };
 }  // End namespace Game_logic
-
-#endif

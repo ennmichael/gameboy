@@ -53,45 +53,45 @@ Line::Line(Point new_from, Angle_rad rads, int length) noexcept
 Line::Line(Point new_from, Point new_to) noexcept : from{new_from},
                                                     to{new_to} {}
 
-Screen::Screen(const Screen_properties& properties) : m_canvas{properties} {
-    check_function(SDL_SetRenderDrawBlendMode(m_canvas.renderer.get(),
+Screen::Screen(const Screen_properties& properties) : canvas_{properties} {
+    check_function(SDL_SetRenderDrawBlendMode(canvas_.renderer.get(),
                                               SDL_BLENDMODE_BLEND));
 }
 
 void Screen::add_draw(Line line, SDL_Color color) {
-    m_snapshots.push_back([this, line, color] {
+    snapshots_.push_back([this, line, color] {
         set_renderer_color(color);
 
-        check_function(SDL_RenderDrawLine(m_canvas.renderer.get(), line.from.x,
+        check_function(SDL_RenderDrawLine(canvas_.renderer.get(), line.from.x,
                                           line.from.y, line.to.x, line.to.y));
     });
 }
 
 void Screen::add_draw(SDL_Rect rect, SDL_Color color, Color_filling filling) {
-    m_snapshots.push_back([this, rect, color, filling] {
+    snapshots_.push_back([this, rect, color, filling] {
         set_renderer_color(color);
 
-        check_function(SDL_RenderDrawRect(m_canvas.renderer.get(), &rect));
+        check_function(SDL_RenderDrawRect(canvas_.renderer.get(), &rect));
         
         if (filling == Color_filling::Filled) {
-            check_function(SDL_RenderFillRect(m_canvas.renderer.get(), &rect));
+            check_function(SDL_RenderFillRect(canvas_.renderer.get(), &rect));
         }
     });
 }
 
 void Screen::redraw(SDL_Color color) {
     set_renderer_color(color);
-    check_function(SDL_RenderClear(m_canvas.renderer.get()));
+    check_function(SDL_RenderClear(canvas_.renderer.get()));
 
-    for (const auto& snapshot : m_snapshots)
+    for (const auto& snapshot : snapshots_)
         snapshot();
 
-    SDL_RenderPresent(m_canvas.renderer.get());
-    m_snapshots.clear();
+    SDL_RenderPresent(canvas_.renderer.get());
+    snapshots_.clear();
 }
 
 void Screen::set_renderer_color(SDL_Color color) {
-    check_function(SDL_SetRenderDrawColor(m_canvas.renderer.get(), color.r,
+    check_function(SDL_SetRenderDrawColor(canvas_.renderer.get(), color.r,
                                           color.g, color.b, color.a));
 }
 }

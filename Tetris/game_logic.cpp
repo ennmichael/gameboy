@@ -97,7 +97,7 @@ int Tetromino_table::clear_rows() noexcept {
     return rows_cleared;
 }
 
-auto Tetromino_table::blocks() const noexcept -> const Matrice& {
+auto Tetromino_table::blocks() const noexcept -> const Matrix& {
     return blocks_;
 }
 

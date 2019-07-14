@@ -1,5 +1,4 @@
-#ifndef _CONTROLLER_HPP_
-#define _CONTROLLER_HPP_
+#pragma once
 
 #include <memory>
 
@@ -34,5 +33,3 @@ class Dummy_controller : public Controller {
     void control(Snake&) override {}
 };
 }
-
-#endif
